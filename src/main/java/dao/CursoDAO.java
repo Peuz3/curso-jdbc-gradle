@@ -99,7 +99,7 @@ public class CursoDAO {
             throwables.printStackTrace();
         }
     }
-
+    //Remoção
     public void delete (int id){
 
         try(Connection connection = ConnectionFactory.getConnection()) {
@@ -119,10 +119,31 @@ public class CursoDAO {
             System.out.println("Falha ao remover curso!");
             throwables.printStackTrace();
         }
-
-
     }
 
+
+    //Atualização
+    public void update(Curso curso){
+        try(Connection connection = ConnectionFactory.getConnection()) {
+
+            //Sql de Atualização
+            String sql = "UPDATE curso SET nome = ?, duracao_horas = ? WHERE id = ?";
+
+            //Preparar statement com os parâmetros recebidos
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,curso.getNome());
+            preparedStatement.setDouble(2,curso.getDuracaoHoras());
+            preparedStatement.setInt(3,curso.getId());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            System.out.println("Atualização De Curso Efetuada Com Sucesso! " + rowsAffected + " linha");
+
+        } catch (SQLException throwables) {
+            System.out.println("Falha ao atualizar o curso");
+            throwables.printStackTrace();
+        }
+    }
 
 
 }
