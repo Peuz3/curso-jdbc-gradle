@@ -78,5 +78,27 @@ public class CursoDAO {
         return curso;
     }
 
+    //Inserção
+    public void create(Curso curso){
+        try(Connection connection = ConnectionFactory.getConnection()) {
+            //Prepara a inserção dos cursos
+            String sql = "INSERT INTO curso(nome, duracao_horas) VALUES (?,?)";
+
+            //Statement com os parâmetros recebidos
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, curso.getNome());
+            preparedStatement.setDouble(2,curso.getDuracaoHoras());
+
+            //Executa a inserção e armazena o número de linhas afetadas
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            System.out.println("Inserção De Curso Efetudada Com Sucesso! " + rowsAffected + " linha");
+
+        } catch (SQLException throwables) {
+            System.out.println("Falha ao inserir curso!");
+            throwables.printStackTrace();
+        }
+    }
+
 
 }
