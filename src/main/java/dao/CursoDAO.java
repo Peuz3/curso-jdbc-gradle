@@ -100,5 +100,29 @@ public class CursoDAO {
         }
     }
 
+    public void delete (int id){
+
+        try(Connection connection = ConnectionFactory.getConnection()) {
+
+            //Prepara o sql
+            String sql = "DELETE FROM curso WHERE id = ?";
+
+            //Preparar statement com os parâmetros recebidos
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,id);
+
+            //Executa delete e armazena o numero de linhas afetadas
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            System.out.println("Curso Excluído Com Sucesso " + rowsAffected + " linha");
+        } catch (SQLException throwables) {
+            System.out.println("Falha ao remover curso!");
+            throwables.printStackTrace();
+        }
+
+
+    }
+
+
 
 }

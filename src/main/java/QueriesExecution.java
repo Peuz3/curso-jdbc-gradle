@@ -38,7 +38,7 @@ public class QueriesExecution {
         System.out.println("INSERÇÃO DE CURSOS");
         System.out.println("------------------------------------------------------------");
 
-        System.out.print("Gostaria de inserir algum curso? 1 - SIM || 2 - NÃO ");
+        System.out.print("Gostaria de inserir algum curso? (1 - SIM || 2 - NÃO) ");
         opcao = scanner.nextInt();
 
         if(opcao == 1){
@@ -61,6 +61,29 @@ public class QueriesExecution {
         }else{
             System.out.println("Opção Inválida");
         }
+
+        System.out.println("------------------------------------------------------------");
+        System.out.println("REMOÇÃO DE CURSOS");
+        System.out.println("------------------------------------------------------------");
+
+        System.out.print("Gostaria de excluir um curso? (1 - SIM || 2 - NÃO) ");
+        opcao = scanner.nextInt();
+
+        if(opcao == 1){
+            System.out.println("Qual o código do curso?");
+            int codCurso = scanner.nextInt();
+
+            cursoDAO.delete(codCurso);
+
+        } else if(opcao == 2){
+            System.out.println("Não houve remoção de cursos");
+        }else{
+            System.out.println("Opção Inválida");
+        }
+
+
+
+
 
 
 
