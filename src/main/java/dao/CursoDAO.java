@@ -46,4 +46,37 @@ public class CursoDAO {
 
     }
 
+    //Consulta por ID
+    public Curso getById(int id){
+
+        //Preparar objeto curso para receber os valores bd
+        Curso curso = new Curso();
+
+        try(Connection connection = ConnectionFactory.getConnection()) {
+            //Prepara a consulta SQL
+            String sql = "SELECT * FROM curso WHERE id = ?";
+
+            //Prepara o statement com os parâmetros
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,id);
+
+            //Executa consulta e armazena o retorno da consulta no resultSet
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            //Guarda os valores retornada da tabela
+            if(resultSet.next()){
+                curso.setId(resultSet.getInt("id"));
+                curso.setNome(resultSet.getString("nome"));
+                curso.setDuracaoHoras(resultSet.getDouble("duracao_Horas"));
+            }
+
+        } catch (SQLException throwables) {
+            System.out.println("Não foi possível fazer a busca do curso");
+            throwables.printStackTrace();
+        }
+
+        return curso;
+    }
+
+
 }

@@ -47,8 +47,8 @@ public class Curso {
     public String toString() {
         return "Curso{" +
                 "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", duracaoHoras=" + duracaoHoras +
+                ", Nome='" + nome + '\'' +
+                ", Duração=" + duracaoHoras + " H" +
                 '}';
     }
 }

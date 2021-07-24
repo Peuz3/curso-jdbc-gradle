@@ -1,8 +1,8 @@
 factory/ConnectionFactory.java
  factory.ConnectionFactory
-dao/CursoDAO.java
- dao.CursoDAO
 model/Curso.java
  model.Curso
+dao/CursoDAO.java
+ dao.CursoDAO
 QueriesExecution.java
  QueriesExecution
